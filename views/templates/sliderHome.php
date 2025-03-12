@@ -3,8 +3,6 @@ require_once('../../controllers/sliderHome.php');
 
 $sliderController = new SliderHomeController();
 $cards = $sliderController->listarAll();
-
-$i = 0;
 ?>
 
 <section class="slider-container">
@@ -18,12 +16,12 @@ $i = 0;
 
     <div class="slider-navigation">
         <?php foreach ($cards as $index => $card): ?>
-            <label for="slide<?= $index + 1 ?>"></label>
+            <div class="dot" data-index="<?= $index ?>"></div>
         <?php endforeach; ?>
     </div>
 </section>
 
-<Style>
+<style>
 .slider-container {
     position: relative;
     width: 100%;
@@ -39,6 +37,7 @@ $i = 0;
 
 .slide {
     min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
 }
 
 img {
@@ -51,36 +50,59 @@ img {
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    position: relative;
-    top: -35px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    z-index: 10;
 }
 
-.slider-navigation label {
-    width: 14px;
-    height: 14px;
+.dot {
+    width: 13px;
+    height: 13px;
     background: none;
-    border-style: solid;
-    border-color: #ffff;
     border-radius: 50%;
+    border: solid;
+    border-color: #ffff;
     margin: 0 5px;
     cursor: pointer;
-    transition: background 0.1s ease-in-out;
+    transition: background 0.3s ease-in-out;
 }
-
-.slider-navigation label:hover {
+.dot.active {
     background: #ffff;
 }
 </style>
 
 <script>
-let index = 0;
+let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
+const dots = document.querySelectorAll('.dot');
 
-function nextSlide() {
-    index = (index + 1) % totalSlides;
-    document.getElementById(`slide${index + 1}`).checked = true;
+function showSlide(index) {
+    if (index < 0) {
+        currentSlide = slides.length - 1;
+    } else if (index >= slides.length) {
+        currentSlide = 0;
+    } else {
+        currentSlide = index;
+    }
+
+    document.querySelector('.slider').style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentSlide].classList.add('active');
 }
 
-setInterval(nextSlide, 5000); // Mudar de slide a cada 5 segundos
+dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'));
+        showSlide(index);
+    });
+});
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+setInterval(nextSlide, 5000);
+showSlide(currentSlide);
 </script>

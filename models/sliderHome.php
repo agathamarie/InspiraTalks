@@ -1,5 +1,5 @@
 <?php
-require_once('C:/xampp/htdocs/InspiraTalks/configuration/connect.php');
+require_once('../../configuration/connect.php');
 
 
 class SliderHome extends Connect {
