@@ -95,6 +95,12 @@
     font-family: 'Arial', sans-serif;
 }
 
+#footerContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #footer a {
     color: var(--lightorange);
     text-decoration: none;
@@ -134,15 +140,15 @@
     transform: scale(1.1);
 }
 
-p {
+#textFooter {
     font-size: 14px;
     margin-top: 10px;
     color: var(--white);
 }
-p a {
+#textFooter a {
     color: var(--lightorange);
     text-decoration: none;
 }
-p a:hover {
+#textFooter a:hover {
     text-decoration: underline;
 }

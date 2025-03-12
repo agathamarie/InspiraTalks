@@ -7,7 +7,7 @@
             <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
         </div>
     </div>
-    <p>&copy; 2025 Inspira Talks. Todos os direitos reservados | <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+    <p id="textFooter">&copy; 2025 Inspira Talks. Todos os direitos reservados | <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a> | <a href="#">Créditos</a></p>
 </footer>
 </body>
 </html>
