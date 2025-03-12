@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    list-style-type: none;
 }
+
 :root {
     --darkblue: #313A87;
     --ligthblue: #4B7198;
@@ -14,26 +17,101 @@
     --black: #120B01;
 }
 
-#navBar{
+#navBar {
     background-color: var(--ligthblue);
-    height: 100%;
-    width: 15%;
+    height: 100vh;
+    width: 280px;
     position: fixed;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0 10px #00000033;
+    border-right: 2px solid #ffffff33;
+    transition: width 0.5s ease, padding 0.3s ease;
 }
 
-.nav-item{
+#navBar.minimized {
+    width: 80px;
+    padding: 20px 10px;
+}
+#navBar.minimized .nav-item {
+    justify-content: center;
+}
+#navBar.minimized .textMenu {
+    display: none;
+}
+#navBar.minimized .iconItem {
+    font-size: 24px;
+}
+
+#divMenu {
+    padding: 10px;
+}
+
+#buttonMenu {
+    font-size: 35px;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#buttonMenu:hover {
+    color: var(--darkorange);
+    transform: scale(1.1);
+}
+
+.div-ul {
+    width: 100%;
+    text-align: left;
+}
+
+.textMenu {
+    font-size: 16px;
+    color: var(--white);
+    font-weight: bold;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left: 10px;
+}
+
+.div-ul:not(:first-of-type) {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ffffff4d;
+}
+
+.item-menu {
+    padding: 8px 10px;
+    transition: 0.3s;
+}
+
+.nav-item {
     display: flex;
     align-items: center;
     color: var(--white);
     text-decoration: none;
-    gap: 1rem;
-}
-.iconItem{
-    color: var(--white);
-    font-size: 25px;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.textMenu{
-    font-size: 15px;
-    color: var(--white);
+.nav-item:hover {
+    background-color: var(--darkorange);
+    color: var(--black);
+    transform: scale(1.05);
+}
+
+.iconItem {
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.nav-item:hover .iconItem {
+    color: var(--black);
+    transform: rotate(10deg);
 }
