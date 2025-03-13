@@ -17,20 +17,21 @@
     --black: #120B01;
 }
 
-#navBar {
-    background-color: var(--ligthblue);
-    height: 100vh;
-    width: 280px;
-    position: fixed;
-    padding: 40px 20px;
+body {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 4px 0 10px #00000033;
-    border-right: 2px solid #ffffff33;
-    transition: width 0.5s ease, padding 0.3s ease;
+    background-color: #F3F3F3;
 }
 
+#navBar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    padding: 20px 8px;
+    left: 0;
+    top: 0;
+    background-color: var(--ligthblue);
+    transition: width 0.4s ease-in-out, padding 0.4s ease-in-out;
+}
 #navBar.minimized {
     width: 80px;
     padding: 20px 10px;
@@ -47,6 +48,8 @@
 
 #divMenu {
     padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 #buttonMenu {
@@ -114,4 +117,41 @@
 .nav-item:hover .iconItem {
     color: var(--black);
     transform: rotate(10deg);
+}
+
+/* Conteudo da Página */
+#content {
+    flex-grow: 1;
+    margin-left: 280px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: margin-left 0.4s ease-in-out;
+}
+#navBar.minimized ~ #content {
+    margin-left: 80px;
+}
+
+#cabecalhoPagina{
+    width: 90%;
+    padding-top: 20px;
+}
+#divCaminhos{
+    padding: 10px 10px 10px 0;
+}
+    .caminhos{
+        color: #747474;
+        font-size: 13px;
+    }
+#divTitulo{
+    padding-bottom: 10px;
+}
+
+#contentAdm{
+    flex-grow: 1;
+    width: 90%;
+    background-color: #ffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }

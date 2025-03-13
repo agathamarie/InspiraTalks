@@ -7,6 +7,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="icon" href="../css/images/logoSite.png" type="image/png">
+    <?php if (isset($cssEspecifico)): ?>
+        <link rel="stylesheet" href="<?= $cssEspecifico ?>">
+    <?php endif; ?>
 </head>
 <body>
     <header id="header">

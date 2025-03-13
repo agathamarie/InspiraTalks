@@ -9,26 +9,28 @@ $cards = $eventosController->listarEventos();
     <div class="carousel">
         <?php foreach ($cards as $index => $card): ?>
         <div class="card">
-            <img id="imgCard" src="../css/images/sliderHome/<?= htmlspecialchars($card['banner']) ?>" alt="Banner do Evento">
+            <img id="imgCard" src="../css/images/bannersEvento/<?= htmlspecialchars($card['banner']) ?>" alt="Banner do Evento">
 
             <div id="divInfo">
                 <p id="nomeCard"><?= htmlspecialchars($card['nome']) ?></p>
                 <p id="descricaoCard"><?= htmlspecialchars($card['descricao']) ?></p>
             </div>
             
-            <div class="divIcon">
-                <i class='bx bxs-calendar'></i>
-                <p class="textIcon" id="data"><?= htmlspecialchars($card['data_inicio']) . ' - ' . htmlspecialchars($card['data_fim'])?></p>
+            <div class="divIconContainer">
+                <div class="divIcon">
+                    <i class='bx bxs-calendar'></i>
+                    <p class="textIcon" id="data"><?= htmlspecialchars($card['data_inicio']) . ' - ' . htmlspecialchars($card['data_fim']) ?></p>
+                </div>
+
+                <div class="divIcon">
+                    <i class='bx bxs-map'></i>
+                    <p class="textIcon" id="local">
+                        <?= htmlspecialchars($card['nome_local'] ?? 'Local não informado') . ' - ' . htmlspecialchars($card['cidade']) ?>
+                    </p>
+                </div>
             </div>
 
-            <div class="divIcon">
-                <i class='bx bxs-map'></i>
-                <p class="textIcon" id="local">
-                    <?= htmlspecialchars($card['nome_local'] ?? 'Local não informado') . ' - ' . htmlspecialchars($card['cidade']) ?>
-                </p>
-            </div>
-
-            <button id="buttonRead">VER MAIS!</button>
+            <button id="buttonRead" onclick="window.location.href='detalhesEvento.php?id=<?= $card['id'] ?>'">VER MAIS!</button>
         </div>
         <?php endforeach; ?>
     </div>
@@ -96,12 +98,18 @@ $cards = $eventosController->listarEventos();
     line-height: 1.4;
 }
 
+.divIconContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 90%;
+    gap: 1rem;
+    padding: 5px 0;
+}
 .divIcon {
     display: flex;
     align-items: center;
-    width: 90%;
     gap: .5rem;
-    padding: 5px 0;
 }
 .divIcon i {
     font-size: 22px;

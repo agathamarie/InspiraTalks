@@ -60,7 +60,7 @@ class EventosController {
     }
 
     public function uploadImagem($file) {
-        $diretorio = 'views/css/images/bannerEvento/';
+        $diretorio = 'views/css/images/bannersEvento/';
 
         if ($file['error'] == 0) {
             $nomeArquivo = uniqid() . '-' . basename($file['name']);
