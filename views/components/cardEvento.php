@@ -47,6 +47,7 @@ if (isset($_GET['eventoDigitado']) && !empty($_GET['eventoDigitado'])) {
     <button id="nextBtn" class="carousel-btn">▶</button>
 </section>
 
+<script src="../js/carrosel.js"></script>
 <style>
 #carousel-container {
     position: relative;
@@ -54,11 +55,13 @@ if (isset($_GET['eventoDigitado']) && !empty($_GET['eventoDigitado'])) {
     justify-content: center;
     overflow: hidden;
     width: 100%;
+    padding: 25px;
 }
 
 .carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    gap: 20px;
 }
 
 .card {
@@ -168,7 +171,3 @@ if (isset($_GET['eventoDigitado']) && !empty($_GET['eventoDigitado'])) {
     right: 20px;
 }
 </style>
-
-<script>
-
-</script>

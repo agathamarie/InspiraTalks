@@ -1,14 +1,15 @@
 <?php
-    require_once('./models/users.php');
+require_once('./models/users.php');
 
-    class UsersController{
-        private $model;
+class UsersController{
+    private $model;
 
-        function __construct(){
-            $this->model = new UserModel();
-        }
+    function __construct(){
+        $this->model = new UserModel();
+    }
 
-        public function getUserById($id){
-            $resultData = $this->model->getUserById($id);
-        }
+    public function getUserById($id){
+        $resultData = $this->model->getUserById($id);
+    }
+}
 ?>

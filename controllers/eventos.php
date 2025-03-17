@@ -30,16 +30,17 @@ class EventosController {
         }
     }
 
-    // Atualizar evento
-    public function atualizar($id, $nome, $categoria, $descricao, $visibilidade, $status, $banner, $data_inicio, $data_fim, $endereco_evento_id) {
-        $this->eventoModel->update($id, $nome, $categoria, $descricao, $visibilidade, $status, $banner, $data_inicio, $data_fim, $endereco_evento_id);
-        echo "Evento atualizado com sucesso!";
-    }
-
     // Deletar evento
     public function delete($id) {
-        $eventoModel = new EventosModel();
-        return $eventoModel->delete($id);
+        return $this->eventoModel->delete($id);
         header('Location: listaEventos.php');
+    }
+
+    public function listarEventos(){
+        return $this->eventoModel->getAll();
+    }    
+
+    public function getEvento( $id ) {
+        return $this->eventoModel->getEvento($id);
     }
 }
