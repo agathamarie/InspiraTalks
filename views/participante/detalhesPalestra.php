@@ -1,7 +1,7 @@
 <!-- header -->
-<?php include('../templates/header.php'); ?>
+<?php include('../components/header.php'); ?>
 
 
 
 <!-- footer -->
-<?php include('../templates/footer.php'); ?>
+<?php include('../components/footer.php'); ?>

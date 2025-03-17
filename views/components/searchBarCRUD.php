@@ -1,22 +1,10 @@
-<?php
-require_once('../../controllers/SearchBar.php');
-
-$searchController = new SearchBar();
-$searchResults = [];
-
-if (isset($_GET['eventoDigitado'])) {
-    $query = $_GET['eventoDigitado'];
-    $searchResults = $searchController->search($query);
-}
-?>
-
 <section id="search-container">
     <form action="search.php" method="GET">
         <div id="inputContainer">
             <input id="searchbar" name="eventoDigitado" type="text" placeholder="Procure seu evento...">
-            <button type="submit" id="search-button">
-                <i class='bx bx-search'></i>
-            </button>
+            <div type="submit" id="search-button">
+                <i  id="search-icon" class='bx bx-search'></i>
+            </div>
         </div>
     </form>
 </section>
@@ -25,14 +13,13 @@ if (isset($_GET['eventoDigitado'])) {
 #search-container {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
 }
 
 #search-container form{
     display: flex;
-    width: 40%;
+    width: 60%;
 }
 #inputContainer {
     position: relative;
@@ -43,7 +30,7 @@ if (isset($_GET['eventoDigitado'])) {
 
 #searchbar {
     width: 100%;
-    height: 50px;
+    height: 40px;
     padding: 10px 20px;
     padding-right: 50px;
     border: 2px solid #C2C2C2;
@@ -51,42 +38,35 @@ if (isset($_GET['eventoDigitado'])) {
     outline: none;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 #searchbar:focus {
     border-color: #F78139;
-    box-shadow: 2px 2px 15px rgba(255, 105, 180, 0.4);
 }
 
 #search-button {
     position: absolute;
     right: 0;
     width: 50px;
-    height: 50px;
-    background: #F78139;
+    height: 40px;
     border: none;
     border-radius: 0 50% 50% 0;
-    cursor: pointer;
+    cursor: text;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s ease-in-out, transform 0.2s;
+    transition: transform 0.2s;
 }
 #search-button i {
     font-size: 22px;
-    color: white;
+    color: #C2C2C2;
     transition: 0.2s ease-in-out;
 }
 #search-button:hover i {
     transform: scale(1.2);
 }
-#search-button:hover {
-    background: #ff5733;
-}
 #search-button:active {
     transform: scale(0.95);
 }
-
 
 #searchbar::placeholder {
     color: #C2C2C2;

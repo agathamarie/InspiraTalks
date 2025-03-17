@@ -17,7 +17,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 
 <!-- header -->
-<?php include('../templates/header.php'); ?>
+<?php include('../components/header.php'); ?>
 
 <section id="sectionEvento">
     <div id="contentSection">
@@ -52,4 +52,4 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 </section>
 
 <!-- footer -->
-<?php include('../templates/footer.php'); ?>
+<?php include('../components/footer.php'); ?>

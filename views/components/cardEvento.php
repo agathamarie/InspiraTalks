@@ -2,7 +2,16 @@
 require_once('../../controllers/eventos.php');
 
 $eventosController = new EventosController();
-$cards = $eventosController->listarEventos();
+$cards = [];
+
+// Se o usuário pesquisou, buscar apenas eventos filtrados
+if (isset($_GET['eventoDigitado']) && !empty($_GET['eventoDigitado'])) {
+    $query = $_GET['eventoDigitado'];
+    $cards = $eventosController->buscarEventos($query);
+} else {
+    // Se não pesquisou, listar todos os eventos
+    $cards = $eventosController->listarEventos();
+}
 ?>
 
 <section id="carousel-container">

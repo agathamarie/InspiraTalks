@@ -7,7 +7,7 @@ class SliderHome extends Connect {
 
     function __construct() {
         parent::__construct();
-        $this->table = 'sliderHome';
+        $this->table = 'fotos_sliderHome';
     }
 
     public function create($name, $arquivo) {

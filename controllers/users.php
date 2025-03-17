@@ -1,7 +1,7 @@
 <?php
     require_once('./models/users.php');
 
-    class UserController{
+    class UsersController{
         private $model;
 
         function __construct(){
@@ -11,6 +11,4 @@
         public function getUserById($id){
             $resultData = $this->model->getUserById($id);
         }
-    }
-
 ?>

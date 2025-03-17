@@ -1,34 +1,49 @@
 <?php
 require_once('./configuration/connect.php');
 
-class UserModel extends Connect{
+class UsersModel extends Connect {
     private $table;
 
-    function __construct(){
+    function __construct() {
         parent::__construct();
-        $this->table = 'Users';
+        $this->table = 'users';
     }
 
-    public function createUser($name, $email, $senha, $role, $createdBy = null) {
+    public function createUser($nome, $sobrenome, $data_nascimento, $cpf, $genero, $email, $senha, $role, $biografia = null, $foto = null) {
         $hashedSenha = password_hash($senha, PASSWORD_DEFAULT);
-        $stmt = $this->connection->prepare("INSERT INTO $this->table (name, email, senha, role, created_by) VALUES (?, ?, ?, ?, ?)");
-        return $stmt->execute([$name, $email, $hashedSenha, $role, $createdBy]);
+        $stmt = $this->connection->prepare("INSERT INTO $this->table (nome, sobrenome, data_nascimento, cpf, genero, email, senha, role, biografia, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([$nome, $sobrenome, $data_nascimento, $cpf, $genero, $email, $hashedSenha, $role, $biografia, $foto]);
     }
 
     public function getUserById($id) {
-        $stmt = $this->connection->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt = $this->connection->prepare("SELECT * FROM $this->table WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getUsersByRole($role) {
-        $stmt = $this->connection->prepare("SELECT * FROM users WHERE role = ?");
+        $stmt = $this->connection->prepare("SELECT * FROM $this->table WHERE role = ?");
         $stmt->execute([$role]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    
+    public function updateUser($id, $nome, $sobrenome, $data_nascimento, $cpf, $genero, $email, $senha = null, $biografia = null, $foto = null) {
+        $setClause = "nome = ?, sobrenome = ?, data_nascimento = ?, cpf = ?, genero = ?, email = ?, biografia = ?, foto = ?";
+        $params = [$nome, $sobrenome, $data_nascimento, $cpf, $genero, $email, $biografia, $foto];
+
+        if ($senha) {
+            $setClause .= ", senha = ?";
+            $params[] = password_hash($senha, PASSWORD_DEFAULT);
+        }
+
+        $stmt = $this->connection->prepare("UPDATE $this->table SET $setClause WHERE id = ?");
+        $params[] = $id;
+        return $stmt->execute($params);
+    }
+
     public function deleteUser($id) {
-        $stmt = $this->connection->prepare("DELETE FROM users WHERE id = ?");
+        $stmt = $this->connection->prepare("DELETE FROM $this->table WHERE id = ?");
         return $stmt->execute([$id]);
     }
 }

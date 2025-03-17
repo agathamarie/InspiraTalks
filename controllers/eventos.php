@@ -1,78 +1,45 @@
 <?php
 require_once('../../models/eventos.php');
-require_once('../../models/enderecoEvento.php');
+require_once('../../models/enderecos_eventos.php');
 
 class EventosController {
-    private $eventosModel;
+    private $eventoModel;
     private $enderecoModel;
 
-    function __construct() {
-        $this->eventosModel = new EventosModel();
-        $this->enderecoModel = new EnderecoModel();
+    // Construtor - instanciar as models
+    public function __construct() {
+        $this->eventoModel = new EventosModel();
+        $this->enderecoModel = new EnderecosEventosModel();
     }
 
-    public function createEvento($dadosEvento, $dadosEndereco, $file) {
-        $endereco_id = $this->enderecoModel->create(
-            $dadosEndereco['estado'],
-            $dadosEndereco['cidade'],
-            $dadosEndereco['bairro'],
-            $dadosEndereco['rua'],
-            $dadosEndereco['numero'],
-            $dadosEndereco['nome_local']
-        );
+    // Salvar e Criar de verdade o Evento
+    public function salvar($nome, $categoria, $descricao,$visibilidade, $status, $banner, $data_inicio, $data_fim, $estado, $cidade, $bairro, $rua, $nome_local) {
+        // Salvar o endereço do evento
+        $enderecoController = new EnderecosEventosController();
+        $enderecoId = $enderecoController->salvar($estado, $cidade, $bairro, $rua, $nome_local);
 
-        $banner = $this->uploadImagem($file);
-        
-        return $this->eventosModel->create(
-            $dadosEvento['nome'],
-            $dadosEvento['descricao'],
-            $dadosEvento['visibilidade'],
-            $dadosEvento['status'],
-            $banner,
-            $dadosEvento['periodo_data'],
-            $endereco_id
-        );
-    }
+        // Criar o evento
+        $eventoModel = new EventosModel();
+        $eventoId = $eventoModel->create($nome, $categoria, $descricao, $visibilidade, $status, $banner, $data_inicio, $data_fim, $enderecoId);
 
-    public function listarEventos() {
-        $cards = $this->eventosModel->listarAll();
-        return $cards;
-    }
-
-    public function getEvento($id) {
-        return $this->eventosModel->read($id);
-    }
-
-    public function atualizarEvento($id, $dadosEvento) {
-        return $this->eventosModel->update(
-            $id,
-            $dadosEvento['nome'],
-            $dadosEvento['descricao'],
-            $dadosEvento['visibilidade'],
-            $dadosEvento['status'],
-            $dadosEvento['banner'],
-            $dadosEvento['endereco_evento_id']
-        );
-    }
-
-    public function deletarEvento($id) {
-        return $this->eventosModel->delete($id);
-    }
-
-    public function uploadImagem($file) {
-        $diretorio = 'views/css/images/bannersEvento/';
-
-        if ($file['error'] == 0) {
-            $nomeArquivo = uniqid() . '-' . basename($file['name']);
-            $caminhoDestino = $diretorio . $nomeArquivo;
-
-            if (move_uploaded_file($file['tmp_name'], $caminhoDestino)) {
-                return $caminhoDestino; 
-            } else {
-                return false;
-            }
+        // Exibir resultado
+        if ($eventoId) {
+            echo "Evento criado com sucesso, ID: " . $eventoId;
+        } else {
+            echo "Erro ao criar evento.";
         }
-        return false;
+    }
+
+    // Atualizar evento
+    public function atualizar($id, $nome, $categoria, $descricao, $visibilidade, $status, $banner, $data_inicio, $data_fim, $endereco_evento_id) {
+        $this->eventoModel->update($id, $nome, $categoria, $descricao, $visibilidade, $status, $banner, $data_inicio, $data_fim, $endereco_evento_id);
+        echo "Evento atualizado com sucesso!";
+    }
+
+    // Deletar evento
+    public function delete($id) {
+        $eventoModel = new EventosModel();
+        return $eventoModel->delete($id);
+        header('Location: listaEventos.php');
     }
 }
-?>
