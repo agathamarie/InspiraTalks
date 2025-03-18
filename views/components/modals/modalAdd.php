@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="../css/modals/addEvento.css">
+<link rel="stylesheet" href="../css/modals/modalAdd.css">
 <dialog id="modal<?= $modalEspecifico ?>">
     <div class="modal-content">
         <button id="buttonClose" class="close-button" aria-label="Fechar">&times;</button>
         <h2>Adicionar <?= $modalEspecifico ?></h2>
 
-        <form action="../../controllers/actions/palestras.php" method="POST" enctype="multipart/form-data">
+        <form action="../../controllers/actions/eventos.php" method="POST" enctype="multipart/form-data">
             <div class="parent">
                 <section id="coluna1">
                     <div class="div1">
@@ -15,7 +15,7 @@
                         
                         <label for="nome">Categoria</label>
                         <select id="categoria" name="categoria" required>
-                            <option value="">Selecione a Caregoria</option>
+                            <option value="">Selecione a Categoria</option>
                             <option value="Saúde">Ambientes e Saúde</option>
                             <option value="Artes">Artes</option>
                             <option value="Beleza">Beleza</option>
@@ -50,10 +50,63 @@
 
                     <div class="div2">
                         <h3>Local</h3>
+                        <div class="input-group">
+                            <div class="input-item">
+                                <label for="cidade">Cidade</label>
+                                <input type="text" id="cidade" name="cidade" placeholder="Cidade do evento..." required>
+                            </div>
+                            <div class="input-item">
+                                <label for="estado">Estado</label>
+                                <select id="estado" name="estado" required>
+                                    <option value="">Selecione o Estado</option>
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">AP</option>
+                                    <option value="AM">AM</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MT">MT</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PR">PR</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RS">RS</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SP">SP</option>
+                                    <option value="SE">SE</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                        </div>
                         
-                        <label for="nome_local">Nome do Local/Sala</label>
+                        <label for="nome_local">Nome do Local</label>
                         <input type="text" id="nome_local" name="nome_local" placeholder="Nome do local..." required>
+                        
+                        <div id="divRua" class="input-group">
+                            <div class="input-item">
+                                <label for="rua">Rua</label>
+                                <input type="text" id="rua" name="rua" placeholder="Rua do local..." required>
+                            </div>
 
+                            <div class="input-item">
+                                <label for="numRua">Número</label>
+                                <input type="text" id="numRua" name="numRua" placeholder="Número do local..." required>
+                            </div>
+                        </div>
+                        
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Bairro do local..." required>
                     </div>
     
                 </section>
@@ -70,6 +123,14 @@
     
 
                     <input type="hidden" id="emAndamento" name="status" value="Em Andamento">
+                    <!-- <div class="div5">
+                        <h3>Status</h3>
+                        <div class="checkbox-group">
+                            <label><input type="radio" id="emAndamento" name="status" value="emAndamento"> Em Andamento</label>
+                            <label><input type="radio" id="encerrado" name="status" value="encerrado"> Encerrado</label>
+                            <label><input type="radio" id="cancelado" name="status" value="cancelado"> Cancelado</label>
+                        </div>
+                    </div> -->
     
                     <div class="div6">
                         <h3>Visibilidade</h3>
