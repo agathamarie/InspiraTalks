@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="../css/modals/modalAdd.css">
-<dialog id="modal<?= $modalEspecifico ?>">
+<link rel="stylesheet" href="../css/modals/modal.css">
+
+<dialog id="modalAdd">
     <div class="modal-content">
         <button id="buttonClose" class="close-button" aria-label="Fechar">&times;</button>
         <h2>Adicionar <?= $modalEspecifico ?></h2>
 
-        <form action="../../controllers/actions/eventos.php" method="POST" enctype="multipart/form-data">
+        <form action="../../controllers/actions/addAction.php" method="POST" enctype="multipart/form-data">
             <div class="parent">
                 <section id="coluna1">
                     <div class="div1">

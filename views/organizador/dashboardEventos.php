@@ -1,25 +1,20 @@
-<!-- header -->
 <?php
 $cssEspecifico = "../css/dashboardEventos.css"; 
 $modalEspecifico = "Evento";
 
-require_once('../../controllers/eventos.php');
-$eventosController = new EventosController();
+require_once('../../controllers/eventoController.php');
+$eventosController = new EventoController();
 $eventos = [];
-
-$eventoModel = new EventosModel();
-$eventos = $eventoModel->getAll();
+$eventos = $eventosController->listarEventos();
 ?>
 
-<!-- header -->
 <?php include('../components/navbar.php'); ?>
 
     <div id="contentAdm">
         
         <?php include('../components/crud.php'); ?>
 
-        <?php include('../components/listaEventos.php'); ?>
+        <?php include('../components/listas.php'); ?>
 
     </div>
-
 </div>

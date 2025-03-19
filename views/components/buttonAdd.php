@@ -20,15 +20,13 @@
 
 
 <?php
-if (isset($modalEspecifico)) {
-    include("../components/modals/add$modalEspecifico.php");
-}
+include("../components/modals/modalAdd.php");
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const addButton = document.getElementById("addButton");
         const modalId = addButton.getAttribute("data-modal"); 
-        const modal = document.getElementById(`modal${modalId}`);
+        const modal = document.getElementById(`modalAdd`);
         const buttonClose = modal.querySelector(".close-button");
 
         addButton.onclick = function () {

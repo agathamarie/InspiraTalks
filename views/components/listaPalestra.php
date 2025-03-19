@@ -1,4 +1,5 @@
-<table>
+<link rel="stylesheet" href="../css/listas.css">
+<table id="listas">
     <thead>
         <tr>
             <th>Palestra</th>
@@ -22,11 +23,10 @@
                 <td><?php echo htmlspecialchars($palestra['data']); ?></td>
                 <td><?php echo date('d/m/Y', strtotime($palestra['horario_inicio'])); ?> à <?php echo date('d/m/Y', strtotime($palestra['horario_fim'])); ?></td>
                 <td><?php echo $palestra['num_participantes'] . ' / ' . htmlspecialchars($palestra['capacidade_max']); ?></td>
-                <td> <!-- Colocar aqui o botão que abre a lista de participantes, se necessário --></td>
+                <td> <!-- Colocar aqui o botão que abre a lista de participantes --></td>
                 <td>
-                    <button class="btn edit-btn"><i class="bx bx-edit"></i></button>
+                    <button class="btn edit-btn" ><i class="bx bx-edit"></i></button>
 
-                    <!-- Formulário de exclusão -->
                     <form action="../../controllers/actions/delete_evento.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id" value="<?php echo $palestra['id']; ?>" />
                         <button type="submit" class="btn delete-btn" onclick="return confirm('Você tem certeza que deseja excluir este evento?')">
@@ -38,42 +38,3 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
-
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-    }
-    table, th, td {
-        border: 1px solid #ddd;
-    }
-    th, td {
-        padding: 10px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .btn {
-        padding: 5px 10px;
-        margin-right: 5px;
-        cursor: pointer;
-        border: none;
-        font-size: 18px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-    .edit-btn {
-        color: #4CAF50;
-        background-color: rgba(76, 175, 80, 0.2);
-    }
-    .delete-btn {
-        color: #f44336;
-        background-color: rgba(244, 67, 54, 0.2);
-    }
-    .btn:hover {
-        opacity: 0.8;
-    }
-</style>

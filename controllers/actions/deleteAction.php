@@ -1,11 +1,11 @@
 <?php
-require_once __DIR__ . '/../eventos.php';
+require_once('../../controllers/eventoController.php');
 
 if (isset($_POST['id'])) {
-    $eventoController = new EventosController();
+    $eventoController = new EventoController();
     $id = $_POST['id'];
     
-    if ($eventoController->delete($id)) {
+    if ($eventoController->deletarEvento($id)) {
         header("Location: ../../views/organizador/dashboardEventos.php");
         exit;
     } else {
